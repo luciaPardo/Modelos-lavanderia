@@ -46,7 +46,7 @@ def tiempo_lavanderia(parametros, tiempo, incom):
 
 
 def parsear_output(soluc):
-    with open("primera_entrega.txt", "w") as entrega:
+    with open("entrega_1.txt", "w") as entrega:
         for key, value in soluc.items():
             entrega.write(f"{key} {value}\n")
 
