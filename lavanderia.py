@@ -6,43 +6,53 @@ def menor_tiempo_prendas(archivo):
     with open(archivo, "r") as lav:
         for linea in lav:
             if linea[0] == "p":  # parametros
-                params = linea.split()[1::]
+                params = list(map(int, linea.split()[2::]))
             elif linea[0] == "e":  # incompatibilidad
                 lin = linea.split()[1::]
-                incom[lin[0]] = incom.get(lin[0], []) + [lin[1]]
+                incom[int(lin[0])] = incom.get(int(lin[0]), []) + [int(lin[1])]
             elif linea[0] == "n":  # tiempo
-                lin = linea.split()[1::]
+                lin = list(map(int, linea.split()[1::]))
                 tiempo[lin[0]] = lin[1]
     tiempo_lavanderia(params, tiempo, incom)
 
 
 def tiempo_lavanderia(parametros, tiempo, incom):
-    suma = 0
     incompat_tot = []
     a_lavar = []
     lavados = []
-    while len(lavados) <= int(parametros[1]):
-        for prenda in incom:
+    soluc = {}
+    lavado_nro = 1
+    primera_vez = True
+    suma = 0
+    while len(lavados) < int(parametros[0]):
+        for prenda in incom.keys():
             if len(a_lavar) == 0:
                 a_lavar.append(prenda)
-            elif prenda not in a_lavar and not es_incompatible(a_lavar, incom, prenda):
+            elif not es_incompatible(a_lavar, incom, prenda) and prenda not in lavados:
                 a_lavar.append(prenda)
-        # print(a_lavar)
         a_sumar = 0
+        lavados += a_lavar
         for elem in a_lavar:
             if int(tiempo[elem]) > a_sumar:
                 a_sumar = int(tiempo[elem])
+            soluc[elem] = lavado_nro
+            incom.pop(elem, None)
         suma += a_sumar
-        lavados += a_lavar
+        lavado_nro += 1
         a_lavar = []
     print(suma)
+    parsear_output(soluc)
     return
 
 
+def parsear_output(soluc):
+    with open("primera_entrega.txt", "w") as entrega:
+        for key, value in soluc.items():
+            entrega.write(f"{key} {value}\n")
+
+
 def es_incompatible(a_lavar, incom, por_agregar):
-    print(a_lavar)
     for prenda in a_lavar:
-        print(incom[por_agregar])
         if por_agregar in a_lavar or prenda in incom[por_agregar]:
             return True
     return False
