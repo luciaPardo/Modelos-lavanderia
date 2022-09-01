@@ -17,32 +17,36 @@ def menor_tiempo_prendas(archivo):
 
 
 def tiempo_lavanderia(parametros, tiempo, incom):
-    incompat_tot = []
+    suma = 0
     a_lavar = []
     lavados = []
     soluc = {}
     lavado_nro = 1
-    primera_vez = True
-    suma = 0
     while len(lavados) < int(parametros[0]):
         for prenda in incom.keys():
             if len(a_lavar) == 0:
                 a_lavar.append(prenda)
             elif not es_incompatible(a_lavar, incom, prenda) and prenda not in lavados:
                 a_lavar.append(prenda)
-        a_sumar = 0
         lavados += a_lavar
-        for elem in a_lavar:
-            if int(tiempo[elem]) > a_sumar:
-                a_sumar = int(tiempo[elem])
-            soluc[elem] = lavado_nro
-            incom.pop(elem, None)
-        suma += a_sumar
+        suma, incom, soluc = pasar_a_solucion(
+            a_lavar, tiempo, suma, incom, soluc, lavado_nro)
         lavado_nro += 1
         a_lavar = []
     print(suma)
     parsear_output(soluc)
     return
+
+
+def pasar_a_solucion(a_lavar, tiempo, suma, incom, soluc, lavado_nro):
+    a_sumar = 0
+    for elem in a_lavar:
+        if tiempo[elem] > a_sumar:
+            a_sumar = tiempo[elem]
+        soluc[elem] = lavado_nro
+        incom.pop(elem, None)
+    suma += a_sumar
+    return suma, incom, soluc
 
 
 def parsear_output(soluc):
