@@ -50,7 +50,7 @@ def pasar_a_solucion(a_lavar, tiempo, suma, incom, soluc, lavado_nro):
 
 
 def parsear_output(soluc):
-    with open("entrega_1.txt", "w") as entrega:
+    with open("entrega_2.txt", "w") as entrega:
         for key, value in soluc.items():
             entrega.write(f"{key} {value}\n")
 
@@ -62,4 +62,4 @@ def es_incompatible(a_lavar, incom, por_agregar):
     return False
 
 
-menor_tiempo_prendas("primer_problema.txt")
+menor_tiempo_prendas("segundo_problema.txt")

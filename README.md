@@ -39,3 +39,10 @@
     El único inconveniente con esta visión sería que es necesario que el grafo sea conexo, de forma que si una prenda es incompatible con el resto, no podría encontar un camino óptimo.
 
     Con el primer intento de fuerza bruta, se llegó a un valor óptimo.
+
+# Segunda Parte
+
+Ahora el objetivo es optimizar dicha solución. Como primera instancia usando la solución ya implementada se corre el archivo nuevo y se verifica el tiempo.
+Podemos observar que el archivo es notablemente más extenso y que el tiempo de ejecución del problema también.
+A primera vista el algoritmo no llega a ninguna solución, tal vez por que el sistema es incompatible.
+Como se mencionó en la entrega anterior, probamos la idea de plantear un grafo y generar una solución calculando el camino más corto posible, y tratando de contemplar casos en que pueda ser incompatible
