@@ -28,3 +28,5 @@
     Como se mencionó en la entrega anterior, probamos la idea de plantear un grafo y generar una solución calculando el camino más corto posible, y tratando de contemplar casos en que pueda ser incompatible.
 
     Empezando a probar con una forma de implementar lo anterior, se conlcuye que no es la forma más eficiente de realizar, sino fijarse en las prendas con mayor tiempo y tratar de emparejarlas con la siguiente de más tiempo para tratar que se encuentren en el mismo lavado.
+
+    Este método llega a un resultado no óptimo pero mejor que los que se venía tratando. A continuación se piensa cómo continuar mejorando el algoritmo, tal vez de forma que se ponga en un lavado las prendas con mayor cantidad de tiempo y menor incompatibilidades, para agrupar la mayor cantidad de prendas de mayor tiempo, y ver si se logra un resultado mejor
