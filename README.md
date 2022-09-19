@@ -1,26 +1,5 @@
 # Modelos-lavanderia
 
-1 1
-11 1
-2 2
-12 2
-17 2
-3 3
-9 3
-20 3
-4 4
-10 4
-5 5
-15 5
-18 5
-6 6
-16 6
-19 6
-7 7
-13 7
-8 8
-14 8
-
 ## Presento ideas generales:
 
     El problema tiene como contexto una lavandería las cuales algunas pueden ir juntas y otras no.
@@ -42,8 +21,8 @@
 
 # Segunda Parte
 
-Ahora el objetivo es optimizar dicha solución. Como primera instancia usando la solución ya implementada se corre el archivo nuevo y se verifica el tiempo.
-Podemos observar que el archivo es notablemente más extenso y que el tiempo de ejecución del problema también.
+    Ahora el objetivo es optimizar dicha solución. Como primera instancia usando la solución ya implementada se corre el archivo nuevo y se verifica el tiempo.
+    Podemos observar que el archivo es notablemente más extenso y que el tiempo de ejecución del problema también.
 
     A primera vista el algoritmo no llega a ninguna solución, tal vez por que el sistema es incompatible.
     Como se mencionó en la entrega anterior, probamos la idea de plantear un grafo y generar una solución calculando el camino más corto posible, y tratando de contemplar casos en que pueda ser incompatible.
