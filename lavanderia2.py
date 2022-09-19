@@ -4,7 +4,6 @@ import numpy as np
 def menor_tiempo_prendas(archivo):
     """ """
     tiempo = []
-    params = []
     incom = {}
     with open(archivo, "r") as lav:
         for linea in lav:
@@ -17,26 +16,25 @@ def menor_tiempo_prendas(archivo):
                 lin = list(map(int, linea.split()[1::]))
                 tiempo.append((lin[1], lin[0]))
         tiempos_max = sorted(tiempo, reverse=True)
-        tiempo_lavanderia(params, incom, tiempos_max)
+        tiempo_lavanderia(incom, tiempos_max)
 
 
-def tiempo_lavanderia(parametros, incom, tiempos_max):
+def tiempo_lavanderia(incom, tiempos_max):
     suma = 0
     a_lavar = []
     lavados = []
     soluc = {}
     lavado_nro = 1
-    while len(lavados) < int(parametros[0]):
+    while len(tiempos_max):
         for mayor_tiempo in tiempos_max:
             prenda = mayor_tiempo[1]
             if len(a_lavar) == 0:
                 a_lavar.append(mayor_tiempo)
             elif not es_incompatible(a_lavar, incom, prenda):
                 a_lavar.append(mayor_tiempo)
-                # print(prenda)
         lavados += a_lavar
-        suma, incom, soluc = pasar_a_solucion(
-            a_lavar, suma, incom, soluc, lavado_nro)
+        suma = pasar_a_solucion(a_lavar, suma, incom,
+                                soluc, lavado_nro, tiempos_max)
         lavado_nro += 1
         a_lavar = []
     print(suma)
@@ -44,7 +42,7 @@ def tiempo_lavanderia(parametros, incom, tiempos_max):
     return
 
 
-def pasar_a_solucion(a_lavar, suma, incom, soluc, lavado_nro):
+def pasar_a_solucion(a_lavar, suma, incom, soluc, lavado_nro, tiempos_max):
     a_sumar = 0
     for tiempo, elem in a_lavar:
         if tiempo > a_sumar:
@@ -53,7 +51,7 @@ def pasar_a_solucion(a_lavar, suma, incom, soluc, lavado_nro):
         incom.pop(elem, None)
         tiempos_max.remove((tiempo, elem))
     suma += a_sumar
-    return suma, incom, soluc
+    return suma
 
 
 def parsear_output(soluc):
