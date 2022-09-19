@@ -16,29 +16,11 @@ def menor_tiempo_prendas(archivo):
             elif linea[0] == "n":  # tiempo
                 lin = list(map(int, linea.split()[1::]))
                 tiempo.append((lin[1], lin[0]))
-        # print(tiempo)
         tiempos_max = sorted(tiempo, reverse=True)
-        print(tiempos_max)
-        tiempo_lavanderia(params, tiempo, incom, tiempos_max)
+        tiempo_lavanderia(params, incom, tiempos_max)
 
 
-def buscar_posibles_lavados(total, incom):
-    prendas = list(range(1, total))
-    compatibles = {}
-    for i in range(1, total):
-        if i not in incom:
-            compatibles[i] = prendas
-            continue
-        compatibles[i] = list(np.setdiff1d(prendas, incom[i]))
-    return compatibles
-
-
-def lav2(tiempo):
-    tiempos_max = sorted(tiempo, reverse=True)
-    return tiempos_max
-
-
-def tiempo_lavanderia(parametros, tiempo, incom, tiempos_max):
+def tiempo_lavanderia(parametros, incom, tiempos_max):
     suma = 0
     a_lavar = []
     lavados = []
@@ -54,7 +36,7 @@ def tiempo_lavanderia(parametros, tiempo, incom, tiempos_max):
                 # print(prenda)
         lavados += a_lavar
         suma, incom, soluc = pasar_a_solucion(
-            a_lavar, tiempos_max, suma, incom, soluc, lavado_nro)
+            a_lavar, suma, incom, soluc, lavado_nro)
         lavado_nro += 1
         a_lavar = []
     print(suma)
@@ -62,7 +44,7 @@ def tiempo_lavanderia(parametros, tiempo, incom, tiempos_max):
     return
 
 
-def pasar_a_solucion(a_lavar, tiempos_max, suma, incom, soluc, lavado_nro):
+def pasar_a_solucion(a_lavar, suma, incom, soluc, lavado_nro):
     a_sumar = 0
     for tiempo, elem in a_lavar:
         if tiempo > a_sumar:
@@ -82,7 +64,7 @@ def parsear_output(soluc):
 
 def es_incompatible(a_lavar, incom, por_agregar):
     for _, prenda in a_lavar:
-        # Esto lo hago porque no estan hechas las reciprocas en el archivo con las incompatibilidades.....
+        # Esto lo hago porque no estan hechas las reciprocas en el archivo con las incompatibilidades
         if por_agregar in incom:
             if por_agregar in a_lavar or prenda in incom[por_agregar]:
                 return True
