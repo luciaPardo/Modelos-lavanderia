@@ -81,7 +81,7 @@ def parsear_output(soluc):
 
 
 def es_incompatible(a_lavar, incom, por_agregar):
-    for prenda, _ in a_lavar:
+    for _, prenda in a_lavar:
         # Esto lo hago porque no estan hechas las reciprocas en el archivo con las incompatibilidades.....
         if por_agregar in incom:
             if por_agregar in a_lavar or prenda in incom[por_agregar]:
