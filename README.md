@@ -44,5 +44,8 @@
 
 Ahora el objetivo es optimizar dicha solución. Como primera instancia usando la solución ya implementada se corre el archivo nuevo y se verifica el tiempo.
 Podemos observar que el archivo es notablemente más extenso y que el tiempo de ejecución del problema también.
-A primera vista el algoritmo no llega a ninguna solución, tal vez por que el sistema es incompatible.
-Como se mencionó en la entrega anterior, probamos la idea de plantear un grafo y generar una solución calculando el camino más corto posible, y tratando de contemplar casos en que pueda ser incompatible
+
+    A primera vista el algoritmo no llega a ninguna solución, tal vez por que el sistema es incompatible.
+    Como se mencionó en la entrega anterior, probamos la idea de plantear un grafo y generar una solución calculando el camino más corto posible, y tratando de contemplar casos en que pueda ser incompatible.
+
+    Empezando a probar con una forma de implementar lo anterior, se conlcuye que no es la forma más eficiente de realizar, sino fijarse en las prendas con mayor tiempo y tratar de emparejarlas con la siguiente de más tiempo para tratar que se encuentren en el mismo lavado.

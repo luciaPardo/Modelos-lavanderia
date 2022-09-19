@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def menor_tiempo_prendas(archivo):
     """ """
     tiempo = {}
@@ -16,22 +13,7 @@ def menor_tiempo_prendas(archivo):
             elif linea[0] == "n":  # tiempo
                 lin = list(map(int, linea.split()[1::]))
                 tiempo[lin[0]] = lin[1]
-    # print(tiempo)
-    # print(params)
-    # print(incom)
-    # tiempo_lavanderia(params, tiempo, incom)
-    compatibles = buscar_posibles_lavados(params[0], incom)
-
-
-def buscar_posibles_lavados(total, incom):
-    prendas = list(range(1, total))
-    compatibles = {}
-    for i in range(1, total):
-        if i not in incom:
-            compatibles[i] = prendas
-            continue
-        compatibles[i] = list(np.setdiff1d(prendas, incom[i]))
-    return compatibles
+    tiempo_lavanderia(params, tiempo, incom)
 
 
 def tiempo_lavanderia(parametros, tiempo, incom):
